@@ -71,8 +71,14 @@ var code = `
 		
 		function timeout() { /* This function is called by itself over and over */
 			if(document.getElementById('speed-extension-input') == null) /* check if our input element doesnt exist */
-				document.getElementsByClassName('now-playing-bar__right')[0].appendChild (input); /* make our input exist on page */
-				
+			{
+				try {
+					document.getElementsByClassName('now-playing-bar__right')[0].appendChild (input); /* make our input exist on page */
+				}catch{
+					setTimeout(timeout, 100);/*now-playing-bar__right doesnt exist yet so lets try again in 100ms*/
+					return;
+				}
+			}
 			setTimeout(function () { /* setTimeout is a delayed call(500 milliseconds) to the code below */
 				try {
 					validateAndChangeSpeed(lastSpeed); /* this is in a try/catch because if an error happens timeout wouldnt be called again. */
