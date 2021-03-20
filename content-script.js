@@ -91,7 +91,7 @@ var code = `
 				document.getElementsByClassName('volume-bar')[0].appendChild(input); /* make our input exist on page */
 				debugLog("Added speed input");
 			}catch{
-				setTimeout(addSpeedInput, 100);/*volume-bar doesnt exist yet so lets try again in 100ms*/
+				setTimeout(addSpeedInput, 1000);/*volume-bar doesnt exist yet so lets try again in 1 second*/
 				return;
 			}
 		}
